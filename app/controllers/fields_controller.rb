@@ -1,7 +1,27 @@
 class FieldsController < ApplicationController
+    def index
+        fields = Field.all
+        render json: FieldSerializer.new(fields).to_serialized_json
+    end
+    
     def show
-        field = Field.all[0]
+        field = Field.find(params[:id])
         render json: FieldSerializer.new(field).to_serialized_json
+    end
+
+    def create
+        new_field = Field.create(strong_params)
+        bed_count = new_field.x_axis_count * new_field.y_axis_count
+        bed_count.times { |i|
+            Bed.create(name: (i+1).to_s, field: new_field)
+        }
+        render json: FieldSerializer(new_field).to_serialized_json
+    end
+
+    private
+
+    def strong_params
+        params.require(:field).permit(:x_axis_count, :y_axis_count, :name)
     end
 
 end
