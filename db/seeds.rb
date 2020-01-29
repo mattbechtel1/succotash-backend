@@ -9,7 +9,6 @@ Bed.destroy_all
 Field.destroy_all
 
 
-
 date = Date.today
 
 first_field = Field.create(name: "My first field", x_axis_count: 2, y_axis_count: 2, slug: slugify('My first field'))
