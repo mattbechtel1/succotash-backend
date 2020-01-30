@@ -1,6 +1,14 @@
 class Stage < ApplicationRecord
   belongs_to :bed
-  enum cycle_stage: [:unused, :tilled, :planted, :growth, :harvest, :post_harvest]
+  enum status: {
+    unused: 'unused', 
+    tilled: 'tilled', 
+    planted: 'planted', 
+    growth: 'growth', 
+    harvest: 'harvest', 
+    barren: 'barren' 
+  }
+ 
 
   def start_date_display
     self.start_date.strftime('%Y-%m-%d')

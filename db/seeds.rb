@@ -15,4 +15,6 @@ first_field = Field.create(name: "My first field", x_axis_count: 2, y_axis_count
 second_field = Field.create(name: 'Ye olde field #2@gmail.com', x_axis_count: 4, y_axis_count: 1, slug: slugify('Ye old field #2@gmail.com'))
 first_bed = Bed.create(name: "My first bed", field: first_field)
 second_bed = Bed.create(name: "My second bed", field: first_field)
-first_stage = Stage.create(cycle_stage: :tilled, start_date: '20200128', due_date: (date + 30.days), bed: first_bed)
+third_bed = Bed.create(name: 'My third bed', field: first_field)
+fourth_bed = Bed.create(name: 'My fourth bed', field: first_field)
+first_stage = Stage.create(status: :tilled, start_date: '20200128', due_date: (date + 30.days), bed: first_bed)
