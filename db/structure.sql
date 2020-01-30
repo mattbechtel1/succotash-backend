@@ -30,7 +30,10 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 CREATE TYPE public.cycle_stage AS ENUM (
     'unused',
     'tilled',
-    'planted'
+    'planted',
+    'growth',
+    'harvest',
+    'barren'
 );
 
 

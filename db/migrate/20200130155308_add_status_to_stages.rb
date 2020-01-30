@@ -1,7 +1,7 @@
 class AddStatusToStages < ActiveRecord::Migration[6.0]
   def up
     execute <<-SQL
-      CREATE TYPE cycle_stage AS ENUM ('unused', 'tilled', 'planted');
+      CREATE TYPE cycle_stage AS ENUM ('unused', 'tilled', 'planted', 'growth', 'harvest', 'barren');
     SQL
 
     add_column :stages, :status, :cycle_stage
