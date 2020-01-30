@@ -13,7 +13,8 @@ class FieldsController < ApplicationController
         new_field = Field.create(strong_params.merge({slug: slugify(params[:name])}))
         bed_count = new_field.x_axis_count * new_field.y_axis_count
         bed_count.times { |i|
-            Bed.create(name: "Bed ##{(i+1).to_s}", field: new_field)
+            bed = Bed.create(name: "Bed ##{(i+1).to_s}", field: new_field)
+            Stage.create(status: :unused, start_date: Date.today, bed: bed)
         }
         render json: FieldSerializer.new(new_field).to_serialized_json
     end
