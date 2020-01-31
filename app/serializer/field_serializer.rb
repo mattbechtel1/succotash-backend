@@ -9,7 +9,7 @@ class FieldSerializer
                 beds: {
                     include: {
                         stages: {
-                            only: [:status, :start_date, :due_date]
+                            except: [:updated_at, :created_at]
                         }
                     },
                     except: [:updated_at, :created_at, :field_id]

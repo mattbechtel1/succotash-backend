@@ -101,7 +101,8 @@ CREATE TABLE public.stages (
     bed_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    status public.cycle_stage
+    status public.cycle_stage,
+    "tempCrop" character varying
 );
 
 
@@ -213,6 +214,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200128192945'),
 ('20200128193626'),
 ('20200129190806'),
-('20200130155308');
+('20200130155308'),
+('20200131163147');
 
 
