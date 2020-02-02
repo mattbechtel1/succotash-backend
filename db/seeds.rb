@@ -23,7 +23,7 @@ third_bed = Bed.create(name: 'My third bed', field: first_field)
     Stage.create(status: :planted, start_date: date, bed: third_bed, tempCrop: 'cucumbers')
 
 fourth_bed = Bed.create(name: 'My fourth bed', field: first_field)
-    Stage.create(status: :unused, start_date: date, due_date: (date + 30.days), bed: fourth_bed, tempCrop: nil)
+    Stage.create(status: "planted", start_date: date, due_date: (date + 30.days), bed: fourth_bed, tempCrop: nil)
     Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, tempCrop: 'soybeans')
 
 
