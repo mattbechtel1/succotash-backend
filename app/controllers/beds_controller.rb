@@ -1,6 +1,4 @@
 class BedsController < ApplicationController
-    # before_action get_bed
-
     def show
         bed = Bed.find(params[:id])
         render json: BedSerializer.new(bed).to_serialized_json

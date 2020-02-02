@@ -9,7 +9,7 @@ Bed.destroy_all
 Field.destroy_all
 
 
-date = Date.today
+date = Date.new(2010, 1, 2)
 
 first_field = Field.create(name: "My first field", x_axis_count: 2, y_axis_count: 2, slug: slugify('My first field'))
 
@@ -24,7 +24,7 @@ third_bed = Bed.create(name: 'My third bed', field: first_field)
 
 fourth_bed = Bed.create(name: 'My fourth bed', field: first_field)
     Stage.create(status: :unused, start_date: date, due_date: (date + 30.days), bed: fourth_bed, tempCrop: nil)
-    Stage.create(status: :tilled, start_date: (date + 30.days), bed: fourth_bed, tempCrop: 'soybeans')
+    Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, tempCrop: 'soybeans')
 
 
 second_field = Field.create(name: 'Ye olde field #2@gmail.com', x_axis_count: 1, y_axis_count: 1, slug: slugify('Ye old field #2@gmail.com'))
