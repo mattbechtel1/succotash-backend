@@ -14,8 +14,7 @@ class FieldSerializer
                     },
                     except: [:updated_at, :created_at, :field_id]
                 }
-            },
-            except: [:updated_at]
+            }
         }
         @field.as_json(format)
     end
