@@ -1,8 +1,8 @@
 class BedsController < ApplicationController
-    def show
-        bed = Bed.find(params[:id])
-        render json: BedSerializer.new(bed).to_serialized_json
-    end
+    # def show
+    #     bed = Bed.find(params[:id])
+    #     render json: BedSerializer.new(bed).to_serialized_json
+    # end
 
     def update
         bed = Bed.find(params[:id])

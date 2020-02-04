@@ -8,7 +8,6 @@ class Stage < ApplicationRecord
     harvest: 'harvest', 
     barren: 'barren' 
   }
- 
 
   def start_date_display
     self.start_date.strftime('%Y-%m-%d')
@@ -16,6 +15,10 @@ class Stage < ApplicationRecord
 
   def due_date_display
     self.due_date.strftime('%Y-%m-%d')
+  end
+
+  def field
+    self.bed.field
   end
 
 end

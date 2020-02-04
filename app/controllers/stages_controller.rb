@@ -1,4 +1,9 @@
 class StagesController < ApplicationController
+    def index
+        stages = Stage.all
+        render json: stages
+    end
+    
     def create
         bed = Bed.find(params[:bed_id])
         new_start_date = Date.parse(params[:start_date])
@@ -32,7 +37,7 @@ class StagesController < ApplicationController
         end
 
         Stage.create(strong_params)
-        
+
         bed = Bed.find(params[:bed_id])
         
         if !bed.stages.find_by(due_date: nil)
