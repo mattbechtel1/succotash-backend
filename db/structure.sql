@@ -191,7 +191,7 @@ CREATE INDEX index_stages_on_bed_id ON public.stages USING btree (bed_id);
 --
 
 ALTER TABLE ONLY public.stages
-    ADD CONSTRAINT fk_rails_3fadf8c609 FOREIGN KEY (bed_id) REFERENCES public.beds(id);
+    ADD CONSTRAINT fk_rails_3fadf8c609 FOREIGN KEY (bed_id) REFERENCES public.beds(id) ON DELETE CASCADE;
 
 
 --
@@ -199,7 +199,7 @@ ALTER TABLE ONLY public.stages
 --
 
 ALTER TABLE ONLY public.beds
-    ADD CONSTRAINT fk_rails_5b7351ec6e FOREIGN KEY (field_id) REFERENCES public.fields(id);
+    ADD CONSTRAINT fk_rails_5b7351ec6e FOREIGN KEY (field_id) REFERENCES public.fields(id) ON DELETE CASCADE;
 
 
 --

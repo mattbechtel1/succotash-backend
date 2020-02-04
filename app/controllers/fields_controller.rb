@@ -21,6 +21,13 @@ class FieldsController < ApplicationController
         render json: FieldSerializer.new(new_field).to_serialized_json
     end
     
+    def destroy
+        Field.find(params[:id]).destroy
+        
+        remainingFields = Field.all
+        render json: FieldSerializer.new(remainingFields).to_serialized_json
+    end
+
     private
 
     def strong_params
