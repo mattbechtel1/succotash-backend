@@ -1,5 +1,5 @@
-# assign seed_basic_data to true to completely reset the database with no seeds, set to false to seed basic data
-seed_basic_data = true
+# assign seed_basic_data to true to completely reset the database with seeds, set to false to clear db completely on reset/seed
+seed_basic_data = false
 
 
 def slugify(string)
