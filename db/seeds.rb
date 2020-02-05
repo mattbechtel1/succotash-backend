@@ -6,11 +6,9 @@ def slugify(string)
     string.gsub(/[^0-9a-z ]/i, '').downcase.split(' ').join('-')
 end
 
-
 Stage.destroy_all
 Bed.destroy_all
 Field.destroy_all
-
 
 if seed_basic_data
     date = Date.new(2015, 1, 2)

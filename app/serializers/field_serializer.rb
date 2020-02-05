@@ -12,7 +12,7 @@ class FieldSerializer
                             except: [:updated_at, :created_at]
                         }
                     },
-                    except: [:updated_at, :created_at, :field_id]
+                    except: [:updated_at, :created_at]
                 }
             }
         }
