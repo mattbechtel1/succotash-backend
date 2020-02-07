@@ -28,9 +28,8 @@ class FieldsController < ApplicationController
     
     def destroy
         Field.find(params[:id]).destroy
-        
-        remainingFields = Field.all
-        render json: FieldSerializer.new(remainingFields).to_serialized_json
+
+        render json: { message: 'Deletion successful' }
     end
 
     private
