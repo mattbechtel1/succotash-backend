@@ -77,7 +77,8 @@ CREATE TABLE public.fields (
     name character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    slug character varying
+    slug character varying,
+    user_id uuid NOT NULL
 );
 
 
@@ -123,6 +124,20 @@ CREATE SEQUENCE public.stages_id_seq
 --
 
 ALTER SEQUENCE public.stages_id_seq OWNED BY public.stages.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    username character varying,
+    password_digest character varying,
+    pic character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -173,10 +188,25 @@ ALTER TABLE ONLY public.stages
 
 
 --
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: index_beds_on_field_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_beds_on_field_id ON public.beds USING btree (field_id);
+
+
+--
+-- Name: index_fields_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_fields_on_user_id ON public.fields USING btree (user_id);
 
 
 --
@@ -203,6 +233,14 @@ ALTER TABLE ONLY public.beds
 
 
 --
+-- Name: fields fk_rails_b061b4e224; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.fields
+    ADD CONSTRAINT fk_rails_b061b4e224 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -215,6 +253,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200128193626'),
 ('20200129190806'),
 ('20200130155308'),
-('20200131163147');
+('20200131163147'),
+('20200206152019'),
+('20200206164225');
 
 
