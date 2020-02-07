@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
 
     def create
         user = User.create(strong_params)
-        byebug
+
         if user.valid?
             @token = encode(user_id: user.id)
             user_serial = UserSerializer.new(user).to_serialized_json

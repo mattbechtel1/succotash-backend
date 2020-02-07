@@ -13,7 +13,6 @@ class ApplicationController < ActionController::API
     end
 
     def decode(token)
-        byebug
         JWT.decode(token, secret_key, true, {algorithm: "HS512"})[0]
     end
 

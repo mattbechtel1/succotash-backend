@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :stages, only: [:create, :index]
-  resources :beds, only: [:updated]
+  resources :beds, only: [:update]
   resources :fields
 
   namespace :api do
