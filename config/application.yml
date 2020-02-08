@@ -6,7 +6,7 @@
 # stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
 # stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
 
-SECRET_KEY: 'CNKLW$8'
+SECRET_KEY: '95c15b829e0bbdf1ecb5b26094e02df9ee73c8038e8a87c6b4ba0c44dc4d3793b0bfe85caa001e5e6d9729425c982b118cd7f3f4ca631998dfcdf38518a38a13'
 #
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
