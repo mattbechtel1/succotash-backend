@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def profile
-        token = request.headers["Authorization"]
+        token = request.headers["Authorization"].split(' ')[1]
         payload = decode(token)
         user = User.find(payload["user_id"])
         render json: UserSerializer.new(user).to_serialized_json
