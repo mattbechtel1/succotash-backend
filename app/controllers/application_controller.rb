@@ -9,6 +9,8 @@ class ApplicationController < ActionController::API
     end
 
     def encode(payload)
+        puts payload
+        puts secret_key
         JWT.encode(payload, secret_key, "HS512")
     end
 
