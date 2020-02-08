@@ -127,6 +127,43 @@ ALTER SEQUENCE public.stages_id_seq OWNED BY public.stages.id;
 
 
 --
+-- Name: todos; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.todos (
+    id bigint NOT NULL,
+    note character varying,
+    due_date timestamp without time zone,
+    start_date timestamp without time zone,
+    complete boolean,
+    user_id uuid NOT NULL,
+    field_id uuid,
+    bed_id uuid,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: todos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.todos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: todos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.todos_id_seq OWNED BY public.todos.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -145,6 +182,13 @@ CREATE TABLE public.users (
 --
 
 ALTER TABLE ONLY public.stages ALTER COLUMN id SET DEFAULT nextval('public.stages_id_seq'::regclass);
+
+
+--
+-- Name: todos id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.todos ALTER COLUMN id SET DEFAULT nextval('public.todos_id_seq'::regclass);
 
 
 --
@@ -188,6 +232,14 @@ ALTER TABLE ONLY public.stages
 
 
 --
+-- Name: todos todos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.todos
+    ADD CONSTRAINT todos_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -217,6 +269,27 @@ CREATE INDEX index_stages_on_bed_id ON public.stages USING btree (bed_id);
 
 
 --
+-- Name: index_todos_on_bed_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todos_on_bed_id ON public.todos USING btree (bed_id);
+
+
+--
+-- Name: index_todos_on_field_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todos_on_field_id ON public.todos USING btree (field_id);
+
+
+--
+-- Name: index_todos_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_todos_on_user_id ON public.todos USING btree (user_id);
+
+
+--
 -- Name: stages fk_rails_3fadf8c609; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -233,11 +306,35 @@ ALTER TABLE ONLY public.beds
 
 
 --
+-- Name: todos fk_rails_9c64952b54; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.todos
+    ADD CONSTRAINT fk_rails_9c64952b54 FOREIGN KEY (field_id) REFERENCES public.fields(id);
+
+
+--
+-- Name: todos fk_rails_a8ff7c7e34; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.todos
+    ADD CONSTRAINT fk_rails_a8ff7c7e34 FOREIGN KEY (bed_id) REFERENCES public.beds(id);
+
+
+--
 -- Name: fields fk_rails_b061b4e224; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.fields
     ADD CONSTRAINT fk_rails_b061b4e224 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: todos fk_rails_d94154aa95; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.todos
+    ADD CONSTRAINT fk_rails_d94154aa95 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -255,6 +352,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200130155308'),
 ('20200131163147'),
 ('20200206152019'),
-('20200206164225');
+('20200206164225'),
+('20200208191118');
 
 

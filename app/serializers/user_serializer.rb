@@ -17,6 +17,9 @@ class UserSerializer
                                 except: [:updated_at, :created_at]
                             }
                         }
+                    },
+                    todos: {
+                        except: [:created_at, :user_id, :updated_at]
                     }
                 },
             except: [:password_digest]

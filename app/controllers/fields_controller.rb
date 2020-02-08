@@ -1,9 +1,4 @@
 class FieldsController < ApplicationController
-    def index
-        fields = Field.all.order(updated_at: :desc)
-        render json: FieldSerializer.new(fields).to_serialized_json
-    end
-    
     def show
         field = Field.find(params[:id])
         render json: FieldSerializer.new(field).to_serialized_json

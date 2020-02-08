@@ -20,6 +20,11 @@ class Api::V1::UsersController < ApplicationController
         render json: UserSerializer.new(user).to_serialized_json
     end
 
+    def show
+        user = User.find(params[:id])
+        render json: UserSerializer.new(user).to_serialized_json
+    end
+
     private
 
     def strong_params
