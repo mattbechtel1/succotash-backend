@@ -22,4 +22,7 @@
 /config/master.key
 
 # Ignore application configuration
+# /config/application.yml
+
+# Ignore application configuration
 /config/application.yml
