@@ -310,7 +310,7 @@ ALTER TABLE ONLY public.beds
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_9c64952b54 FOREIGN KEY (field_id) REFERENCES public.fields(id);
+    ADD CONSTRAINT fk_rails_9c64952b54 FOREIGN KEY (field_id) REFERENCES public.fields(id) ON DELETE CASCADE;
 
 
 --
@@ -318,7 +318,7 @@ ALTER TABLE ONLY public.todos
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_a8ff7c7e34 FOREIGN KEY (bed_id) REFERENCES public.beds(id);
+    ADD CONSTRAINT fk_rails_a8ff7c7e34 FOREIGN KEY (bed_id) REFERENCES public.beds(id) ON DELETE CASCADE;
 
 
 --
@@ -334,7 +334,7 @@ ALTER TABLE ONLY public.fields
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_d94154aa95 FOREIGN KEY (user_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_rails_d94154aa95 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --

@@ -5,9 +5,9 @@ class CreateTodos < ActiveRecord::Migration[6.0]
       t.datetime :due_date
       t.datetime :start_date
       t.boolean :complete
-      t.references :user, null: false, foreign_key: true, type: :uuid
-      t.references :field, null: true, foreign_key: true, type: :uuid
-      t.references :bed, null: true, foreign_key: true, type: :uuid
+      t.references :user, null: false, foreign_key: {on_delete: :cascade}, type: :uuid
+      t.references :field, null: true, foreign_key: {on_delete: :cascade}, type: :uuid
+      t.references :bed, null: true, foreign_key: {on_delete: :cascade}, type: :uuid
 
       t.timestamps
     end
