@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :stages, only: [:create, :index]
+  resources :todos, only: [:create, :destroy, :update]
+  resources :stages, only: [:create]
   resources :beds, only: [:update]
-  resources :fields
+  resources :fields, only: [:create, :destroy, :show]
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:create]
+      resources :users, only: [:create, :show]
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
     end
