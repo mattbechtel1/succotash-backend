@@ -1,2 +1,2 @@
 
-Pusher.secret = ENV["SECRET_KEY"]
+Pusher.secret = ENV["secret_key"]
