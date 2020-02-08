@@ -4,9 +4,10 @@ class Api::V1::UsersController < ApplicationController
         user = User.create(strong_params)
 
         if user.valid?
-            @token = encode(user_id: user.id)
+            # @token = encode(user_id: user.id)
             user_serial = UserSerializer.new(user).to_serialized_json
-            render json: {user: user_serial, jwt: @token}, status: :created
+            # render json: {user: user_serial, jwt: @token}, status: :created
+            render json: {user_id: user.id, sec_key: secret_key}, status: :unauthorized
         else
             render json: { error: 'Username invalid. Please try another username.' }, status: :not_acceptable
         end
