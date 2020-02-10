@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :todos, only: [:create, :destroy, :update]
+  resources :favorites, only: [:create, :destroy]
+  resources :crops, only: [:create]
+  resources :todos, only: [:create, :destroy, :update, :show]
   resources :stages, only: [:create]
   resources :beds, only: [:update]
   resources :fields, only: [:create, :destroy, :show]

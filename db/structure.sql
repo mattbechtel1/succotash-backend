@@ -24,6 +24,22 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
 --
+-- Name: crop_category; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.crop_category AS ENUM (
+    'vegetable',
+    'fruit',
+    'legume',
+    'grain',
+    'flower',
+    'herb',
+    'grass',
+    'other'
+);
+
+
+--
 -- Name: cycle_stage; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -34,6 +50,21 @@ CREATE TYPE public.cycle_stage AS ENUM (
     'growth',
     'harvest',
     'barren'
+);
+
+
+--
+-- Name: unit; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.unit AS ENUM (
+    'bushel',
+    'count',
+    'bunch',
+    'peck',
+    'pounds',
+    'crate',
+    'dry quart'
 );
 
 
@@ -61,6 +92,34 @@ CREATE TABLE public.beds (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     field_id uuid NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: crops; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.crops (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    name character varying,
+    pic_url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    category public.crop_category,
+    default_measure public.unit
+);
+
+
+--
+-- Name: favorites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.favorites (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    user_id uuid NOT NULL,
+    crop_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -103,7 +162,7 @@ CREATE TABLE public.stages (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     status public.cycle_stage,
-    "tempCrop" character varying
+    crop_id uuid
 );
 
 
@@ -208,6 +267,22 @@ ALTER TABLE ONLY public.beds
 
 
 --
+-- Name: crops crops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.crops
+    ADD CONSTRAINT crops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: favorites favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT favorites_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: fields fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -255,6 +330,20 @@ CREATE INDEX index_beds_on_field_id ON public.beds USING btree (field_id);
 
 
 --
+-- Name: index_favorites_on_crop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_favorites_on_crop_id ON public.favorites USING btree (crop_id);
+
+
+--
+-- Name: index_favorites_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_favorites_on_user_id ON public.favorites USING btree (user_id);
+
+
+--
 -- Name: index_fields_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -266,6 +355,13 @@ CREATE INDEX index_fields_on_user_id ON public.fields USING btree (user_id);
 --
 
 CREATE INDEX index_stages_on_bed_id ON public.stages USING btree (bed_id);
+
+
+--
+-- Name: index_stages_on_crop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_stages_on_crop_id ON public.stages USING btree (crop_id);
 
 
 --
@@ -290,6 +386,14 @@ CREATE INDEX index_todos_on_user_id ON public.todos USING btree (user_id);
 
 
 --
+-- Name: stages fk_rails_23f5c65236; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.stages
+    ADD CONSTRAINT fk_rails_23f5c65236 FOREIGN KEY (crop_id) REFERENCES public.crops(id);
+
+
+--
 -- Name: stages fk_rails_3fadf8c609; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -306,11 +410,19 @@ ALTER TABLE ONLY public.beds
 
 
 --
+-- Name: favorites fk_rails_8ff4177e6a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT fk_rails_8ff4177e6a FOREIGN KEY (crop_id) REFERENCES public.crops(id);
+
+
+--
 -- Name: todos fk_rails_9c64952b54; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_9c64952b54 FOREIGN KEY (field_id) REFERENCES public.fields(id);
+    ADD CONSTRAINT fk_rails_9c64952b54 FOREIGN KEY (field_id) REFERENCES public.fields(id) ON DELETE CASCADE;
 
 
 --
@@ -318,7 +430,7 @@ ALTER TABLE ONLY public.todos
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_a8ff7c7e34 FOREIGN KEY (bed_id) REFERENCES public.beds(id);
+    ADD CONSTRAINT fk_rails_a8ff7c7e34 FOREIGN KEY (bed_id) REFERENCES public.beds(id) ON DELETE CASCADE;
 
 
 --
@@ -330,11 +442,19 @@ ALTER TABLE ONLY public.fields
 
 
 --
+-- Name: favorites fk_rails_d15744e438; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favorites
+    ADD CONSTRAINT fk_rails_d15744e438 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: todos fk_rails_d94154aa95; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.todos
-    ADD CONSTRAINT fk_rails_d94154aa95 FOREIGN KEY (user_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_rails_d94154aa95 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -353,6 +473,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200131163147'),
 ('20200206152019'),
 ('20200206164225'),
-('20200208191118');
+('20200208191118'),
+('20200209204050'),
+('20200209204152'),
+('20200209205526'),
+('20200209205916'),
+('20200209211646'),
+('20200210034405');
 
 
