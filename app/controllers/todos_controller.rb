@@ -9,9 +9,16 @@ class TodosController < ApplicationController
         render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
     end
 
+    def update
+        byebug
+        todo = Todo.find(params[:id])
+        todo.update(strong_params)
+        render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+    end
+
     def destroy
         Todo.find(params[:id]).destroy
-        render json: { message: 'Favorite removed' } 
+        render json: { message: 'Todo removed' } 
     end
 
     private
