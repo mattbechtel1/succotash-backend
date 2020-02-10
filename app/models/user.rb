@@ -5,4 +5,6 @@ class User < ApplicationRecord
     has_many :beds, through: :fields
     has_many :stages, through: :beds
     has_many :todos
+    has_many :favorites
+    has_many :crops, through: :favorites
 end

@@ -12,6 +12,8 @@
 
 
 secret_key: akjlsj54235tera8f9dpsuvjen46l3h5terugpdfijlke56&324reds9x
+edamam_app_id: a5c5b288
+edamam_app_key: 3d6e37913dad0b8c00a4970bea9d8a7b
 
 development:
   allowed_origin: http://localhost:3000
