@@ -23,7 +23,7 @@ class CropsController < ApplicationController
 
         # iterate through response and return first available image url
         i = 0
-        image_url = false
+        image_url = nil
         byebug
         while i < response["hints"].length && !image_url do
             if response["hints"][i]["food"]["image"]

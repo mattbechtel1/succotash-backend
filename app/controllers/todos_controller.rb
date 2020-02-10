@@ -10,7 +10,8 @@ class TodosController < ApplicationController
     end
 
     def destroy
-        
+        Todo.find(params[:id]).destroy
+        render json: { message: 'Favorite removed' } 
     end
 
     private
