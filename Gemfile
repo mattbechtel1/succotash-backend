@@ -17,6 +17,7 @@ gem 'puma', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'figaro'
 gem 'pusher'
+gem 'rest-client'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -25,6 +26,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
+# gem 'config'
 
 # gem 'platform-api'
 

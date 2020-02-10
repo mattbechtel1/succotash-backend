@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://succotash-app.herokuapp.com'
+    origins Figaro.env.allowed_origin
 
     resource '*',
       headers: :any,

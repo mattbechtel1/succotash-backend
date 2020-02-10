@@ -11,4 +11,12 @@
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 
 
-secret_key: 95c15b829e0bbdf1ecb5b26094e02df9ee73c8038e8a87c6b4ba0c44dc4d3793b0bfe85caa001e5e6d9729425c982b118cd7f3f4ca631998dfcdf38518a38a13
+secret_key: akjlsj54235tera8f9dpsuvjen46l3h5terugpdfijlke56&324reds9x
+edamam_app_id: a5c5b288
+edamam_app_key: 3d6e37913dad0b8c00a4970bea9d8a7b
+
+development:
+  allowed_origin: http://localhost:3000
+
+production:
+  allowed_origin: https://succotash-app.herokuapp.com
