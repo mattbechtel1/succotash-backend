@@ -10,7 +10,7 @@ User.destroy_all
 Crop.destroy_all
 
 if seed_basic_data
-    date = Date.new(2015, 1, 3)
+    date = Date.new(2020, 1, 3)
 
     userA = User.create(username: 'farmerMatt', password: 'password')
    
@@ -33,6 +33,8 @@ if seed_basic_data
     fourth_bed = Bed.create(name: 'My fourth bed', field: first_field)
         Stage.create(status: "planted", start_date: date, due_date: (date + 30.days), bed: fourth_bed, crop: nil)
         Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, crop: soybeans)
+
+        Todo.create(note: 'Milk cows', start_date: Date.today, due_date: Date.today + 1.days, complete: false, user: userA)
 
         Todo.create(note: 'Buy seeds', start_date: (date + 3.days), due_date: (date + 3.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
         Todo.create(note: 'Scatter seeds', start_date: (date + 3.days), due_date: (date + 5.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
