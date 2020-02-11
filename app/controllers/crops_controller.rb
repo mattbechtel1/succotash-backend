@@ -3,9 +3,13 @@ require 'rest-client'
 
 class CropsController < ApplicationController
 
+    def index
+        crops = Crop.all.order(name: :asc)
+        render json: crops, except: [:created_at, :updated_at]
+    end
+
     def create
         pic_url = crop_pic(params[:name])
-        byebug
         newCrop = Crop.create(strong_params.merge({pic_url: pic_url}))
 
         render json: newCrop, except: [:created_at, :updated_at]

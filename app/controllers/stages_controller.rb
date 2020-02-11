@@ -30,9 +30,9 @@ class StagesController < ApplicationController
                 start_pushed_back.update(start_date: new_due_date + 1.day)
             end
         end
-
+        
         Stage.create(strong_params)
-
+        
         bed = Bed.find(params[:bed_id])
         
         if !bed.stages.find_by(due_date: nil)
@@ -40,7 +40,7 @@ class StagesController < ApplicationController
         end
 
         bed = Bed.find(params[:bed_id])
-        
+        puts bed.stages.count
         render json: BedSerializer.new(bed).to_serialized_json
     end
 
@@ -48,6 +48,6 @@ class StagesController < ApplicationController
     private
 
     def strong_params
-        params.require(:stage).permit(:tempCrop, :start_date, :due_date, :bed_id, :status)
+        params.require(:stage).permit(:crop_id, :start_date, :due_date, :bed_id, :status)
     end
 end

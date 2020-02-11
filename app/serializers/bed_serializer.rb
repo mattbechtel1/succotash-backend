@@ -7,6 +7,11 @@ class BedSerializer
         format = {
             include: {
                 stages: {
+                    include: {
+                        crop: {
+                            except: [:updated_at, :created_at]
+                        }
+                    },
                     except: [:updated_at, :created_at]
                 }
             },

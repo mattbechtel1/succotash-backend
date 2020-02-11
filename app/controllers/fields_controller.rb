@@ -12,8 +12,8 @@ class FieldsController < ApplicationController
             bed_count.times { |i|
                 bed = Bed.create(name: "Bed ##{(i+1).to_s}", field: new_field)
                 Stage.create(status: :unused, start_date: Date.new(2015, 1, 1), due_date: Date.today - 1,
-                    bed: bed)
-                Stage.create(status: :unused, start_date: Date.today, bed: bed)
+                    bed: bed, crop: nil)
+                Stage.create(status: :unused, start_date: Date.today, bed: bed, crop: nil)
             }
             render json: FieldSerializer.new(new_field).to_serialized_json
         else 
