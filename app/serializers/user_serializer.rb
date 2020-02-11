@@ -11,6 +11,11 @@ class UserSerializer
                             beds: {
                                 include: {
                                     stages: {
+                                        include: {
+                                            crop: {
+                                                except: [:updated_at, :created_at]
+                                            }
+                                        },
                                         except: [:updated_at, :created_at]
                                     },
                                     todos: {
