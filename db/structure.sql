@@ -193,7 +193,6 @@ CREATE TABLE public.todos (
     id bigint NOT NULL,
     note character varying,
     due_date timestamp without time zone,
-    start_date timestamp without time zone,
     complete boolean,
     user_id uuid NOT NULL,
     field_id uuid,
@@ -479,6 +478,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200209205526'),
 ('20200209205916'),
 ('20200209211646'),
-('20200210034405');
+('20200210034405'),
+('20200211023947');
 
 

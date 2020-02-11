@@ -1,7 +1,12 @@
 class TodosController < ApplicationController
     def create
         todo = Todo.create(strong_params)
-        render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+        if todo.valid?
+            render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+        else
+            render json: { error: 'Cannot associate a new task with a bed but not a field.' }, status: :not_acceptable
+        end
+            
     end
 
     def show
@@ -10,7 +15,6 @@ class TodosController < ApplicationController
     end
 
     def update
-        byebug
         todo = Todo.find(params[:id])
         todo.update(strong_params)
         render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
