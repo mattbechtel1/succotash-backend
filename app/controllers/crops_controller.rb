@@ -22,20 +22,9 @@ class CropsController < ApplicationController
     end
 
     def crop_pic(search_term)
-        search_url = "https://api.edamam.com/api/food-database/parser?ingr=#{search_term}&app_id=#{Figaro.env.edamam_app_id}&app_key=#{Figaro.env.edamam_app_key}"
+        search_url = "https://api.spoonacular.com/food/ingredients/autocomplete?query=#{search_term}&apiKey=#{Figaro.env.spoonacular_api_key}"
         response = JSON.parse(RestClient.get(search_url))
-
-        # iterate through response and return first available image url
-        i = 0
-        image_url = nil
-        byebug
-        while i < response["hints"].length && !image_url do
-            if response["hints"][i]["food"]["image"]
-                image_url = response["hints"][i]["food"]["image"]
-            end
-            i += 1
-        end
-
-        image_url
+        
+        img_url = "https://spoonacular.com/cdn/ingredients_100x100/#{response[0]["image"]}"
     end
 end
