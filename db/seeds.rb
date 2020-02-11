@@ -34,10 +34,10 @@ if seed_basic_data
         Stage.create(status: "planted", start_date: date, due_date: (date + 30.days), bed: fourth_bed, crop: nil)
         Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, crop: soybeans)
 
-        Todo.create(note: 'Milk cows', start_date: Date.today, due_date: Date.today + 1.days, complete: false, user: userA)
+        Todo.create(note: 'Milk cows', due_date: Date.today + 1.days, complete: false, user: userA)
 
-        Todo.create(note: 'Buy seeds', start_date: (date + 3.days), due_date: (date + 3.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
-        Todo.create(note: 'Scatter seeds', start_date: (date + 3.days), due_date: (date + 5.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
+        Todo.create(note: 'Buy seeds', due_date: (date + 3.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
+        Todo.create(note: 'Scatter seeds', due_date: (date + 5.days), complete: false, user: userA, bed: fourth_bed, field: fourth_bed.field)
 
 
     second_field = Field.create(name: 'Ye olde field #3@gmail.com', user: userA, x_axis_count: 1, y_axis_count: 1, slug: slugify('Ye old field #3@gmail.com'))
