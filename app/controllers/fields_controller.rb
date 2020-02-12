@@ -1,11 +1,7 @@
 class FieldsController < ApplicationController
-    def show
-        field = Field.find(params[:id])
-        render json: FieldSerializer.new(field).to_serialized_json
-    end
 
     def create
-        new_field = Field.create(strong_params.merge({slug: slugify(params[:name])}))
+        new_field = Field.create(strong_params.merge({slug: slugify(params[:name], pic: 'dirt')}))
 
         if new_field.valid?
             bed_count = new_field.x_axis_count * new_field.y_axis_count
@@ -20,6 +16,13 @@ class FieldsController < ApplicationController
             render json: { error: 'Name invalid. Please try another name for your field.' }, status: :not_acceptable
         end
     end
+
+    def update
+        field = Field.find(params[:id])
+        field.update(strong_params.merge({slug: slugify(params[:name])}))
+        
+        render json: FieldSerializer.new(field).to_serialized_json
+    end
     
     def destroy
         Field.find(params[:id]).destroy
@@ -30,7 +33,7 @@ class FieldsController < ApplicationController
     private
 
     def strong_params
-        params.require(:field).permit(:x_axis_count, :y_axis_count, :name, :user_id)
+        params.require(:field).permit(:x_axis_count, :y_axis_count, :name, :user_id, :pic)
     end
 
 end

@@ -137,7 +137,8 @@ CREATE TABLE public.fields (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     slug character varying,
-    user_id uuid NOT NULL
+    user_id uuid NOT NULL,
+    pic character varying
 );
 
 
@@ -479,6 +480,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200209205916'),
 ('20200209211646'),
 ('20200210034405'),
-('20200211023947');
+('20200211023947'),
+('20200212153914');
 
 
