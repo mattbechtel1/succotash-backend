@@ -2,7 +2,7 @@ class TodosController < ApplicationController
     def create
         todo = Todo.create(strong_params)
         if todo.valid?
-            render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+            render json: TodoSerializer.new(todo).to_serialized_json
         else
             render json: { error: 'Cannot associate a new task with a bed but not a field.' }, status: :not_acceptable
         end
@@ -11,13 +11,13 @@ class TodosController < ApplicationController
 
     def show
         todo = Todo.find(params[:id])
-        render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+        render json: TodoSerializer.new(todo).to_serialized_json
     end
 
     def update
         todo = Todo.find(params[:id])
         todo.update(strong_params)
-        render json: todo, only: [:id, :note, :due_date, :start_date, :complete, :user_id, :field_id, :bed_id]
+        render json: TodoSerializer.new(todo).to_serialized_json
     end
 
     def destroy

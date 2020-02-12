@@ -2,7 +2,8 @@ class FavoritesController < ApplicationController
 
     def create
         favorite = Favorite.create(strong_params)
-        # serializer should have crop nested
+
+        render json: FavoriteSerializer.new(favorite).to_serialized_json
     end
 
     def destroy

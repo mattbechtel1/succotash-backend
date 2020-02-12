@@ -13,6 +13,9 @@ class BedSerializer
                         }
                     },
                     except: [:updated_at, :created_at]
+                },
+                todos: {
+                    except: [:updated_at, :created_at, :field_id, :bed_id, :user_id]
                 }
             },
             except: [:updated_at, :created_at]
