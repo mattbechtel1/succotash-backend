@@ -44,6 +44,14 @@ class UserSerializer
                             }
                         },
                         except: [:created_at, :user_id, :updated_at]
+                    },
+                    favorites: {
+                        include: {
+                            crop: {
+                                except: [:created_at, :updated_at]
+                            }
+                        },
+                        except: [:created_at, :updated_at, :user_id]
                     }
                 },
             except: [:password_digest]

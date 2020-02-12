@@ -13,25 +13,25 @@ if seed_basic_data
 
     userA = User.create(username: 'farmerMatt', password: 'password')
    
-    carrots = Crop.create(name: 'Carrots', default_measure: :bushel, category: :vegetable)
-    rhubarb = Crop.create(name: 'Rhubarb', default_measure: :bunch, category: :herb)
-    cucumbers = Crop.create(name: 'Cucubmber', default_measure: :bushel, category: :vegetable)
-    soybeans = Crop.create(name: 'Soybeans', default_measure: :bushel, category: :legume)
+    # carrots = Crop.create(name: 'Carrots', default_measure: :bushel, category: :vegetable)
+    # rhubarb = Crop.create(name: 'Rhubarb', default_measure: :bunch, category: :herb)
+    # cucumbers = Crop.create(name: 'Cucubmber', default_measure: :bushel, category: :vegetable)
+    # soybeans = Crop.create(name: 'Soybeans', default_measure: :bushel, category: :legume)
     
     first_field = Field.create(name: "My first field", x_axis_count: 3, y_axis_count: 3, user: userA, slug: slugify('My first field'))
 
     first_bed = Bed.create(name: "My first bed", field: first_field)
-        Stage.create(status: :harvest, start_date: date, bed: first_bed, crop: carrots)
+        Stage.create(status: :harvest, start_date: date, bed: first_bed, crop: nil)
 
     second_bed = Bed.create(name: "My second bed", field: first_field)
-        Stage.create(status: :growth, start_date: date, bed: second_bed, crop: rhubarb)
+        Stage.create(status: :growing, start_date: date, bed: second_bed, crop: nil)
 
     third_bed = Bed.create(name: 'My third bed', field: first_field)
-        Stage.create(status: :planted, start_date: date, bed: third_bed, crop: cucumbers)
+        Stage.create(status: :planted, start_date: date, bed: third_bed, crop: nil)
 
     fourth_bed = Bed.create(name: 'My fourth bed', field: first_field)
         Stage.create(status: "planted", start_date: date, due_date: (date + 30.days), bed: fourth_bed, crop: nil)
-        Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, crop: soybeans)
+        Stage.create(status: :tilled, start_date: Date.today, bed: fourth_bed, crop: nil)
 
         Todo.create(note: 'Milk cows', due_date: Date.today + 1.days, complete: false, user: userA)
 

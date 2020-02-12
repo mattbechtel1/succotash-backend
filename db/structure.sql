@@ -47,7 +47,7 @@ CREATE TYPE public.cycle_stage AS ENUM (
     'unused',
     'tilled',
     'planted',
-    'growth',
+    'growing',
     'harvest',
     'barren'
 );

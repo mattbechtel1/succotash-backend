@@ -5,7 +5,7 @@ class Stage < ApplicationRecord
     unused: 'unused', 
     tilled: 'tilled', 
     planted: 'planted', 
-    growth: 'growth', 
+    growing: 'growing', 
     harvest: 'harvest', 
     barren: 'barren' 
   }

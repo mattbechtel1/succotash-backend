@@ -3,7 +3,7 @@ class StagesController < ApplicationController
         bed = Bed.find(params[:bed_id])
         new_start_date = Date.parse(params[:start_date])
 
-        if !params[:due_date]
+        if !params[:due_date]  
             bed.stages.where('start_date > ?', new_start_date).destroy_all
 
             bed = Bed.find(params[:bed_id])
@@ -40,7 +40,6 @@ class StagesController < ApplicationController
         end
 
         bed = Bed.find(params[:bed_id])
-        puts bed.stages.count
         render json: BedSerializer.new(bed).to_serialized_json
     end
 
