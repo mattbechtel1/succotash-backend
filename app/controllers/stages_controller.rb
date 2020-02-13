@@ -32,7 +32,7 @@ class StagesController < ApplicationController
         end
         
         Stage.create(strong_params)
-        
+
         bed = Bed.find(params[:bed_id])
         
         if !bed.stages.find_by(due_date: nil)

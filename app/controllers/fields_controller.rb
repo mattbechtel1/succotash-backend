@@ -1,7 +1,7 @@
 class FieldsController < ApplicationController
 
     def create
-        new_field = Field.create(strong_params.merge({slug: slugify(params[:name], pic: 'dirt')}))
+        new_field = Field.create(strong_params.merge({slug: slugify(params[:name]), pic: 'soil'}))
 
         if new_field.valid?
             bed_count = new_field.x_axis_count * new_field.y_axis_count
@@ -19,9 +19,13 @@ class FieldsController < ApplicationController
 
     def update
         field = Field.find(params[:id])
-        field.update(strong_params.merge({slug: slugify(params[:name])}))
-        
-        render json: FieldSerializer.new(field).to_serialized_json
+        result = field.update(strong_params.merge({slug: slugify(params[:name])}))
+
+        if result
+            render json: FieldSerializer.new(field).to_serialized_json
+        else
+            render json: { error: 'Name invalid. Please try another name for your field.' }, status: :not_acceptable
+        end
     end
     
     def destroy
