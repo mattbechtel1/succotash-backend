@@ -20,4 +20,5 @@ class Crop < ApplicationRecord
         crate: 'crate',
         dry_quart: 'dry quart'
     }
+    validates :name, uniqueness: { case_sensitive: false }
 end

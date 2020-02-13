@@ -16,8 +16,13 @@ class TodosController < ApplicationController
 
     def update
         todo = Todo.find(params[:id])
-        todo.update(strong_params)
-        render json: TodoSerializer.new(todo).to_serialized_json
+        result = todo.update(strong_params)
+
+        if result
+            render json: TodoSerializer.new(todo).to_serialized_json
+        else 
+            render json: { error: 'Could not update your task.'}
+        end
     end
 
     def destroy
