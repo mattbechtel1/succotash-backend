@@ -138,7 +138,7 @@ CREATE TABLE public.fields (
     updated_at timestamp(6) without time zone NOT NULL,
     slug character varying,
     user_id uuid NOT NULL,
-    pic character varying
+    pic_opt character varying
 );
 
 

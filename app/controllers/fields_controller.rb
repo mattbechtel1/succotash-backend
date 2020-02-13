@@ -1,8 +1,8 @@
 class FieldsController < ApplicationController
 
     def create
-        new_field = Field.create(strong_params.merge({slug: slugify(params[:name]), pic: 'soil'}))
-
+        new_field = Field.create(strong_params.merge({slug: slugify(params[:name]), pic_opt: 'soil'}))
+        byebug
         if new_field.valid?
             bed_count = new_field.x_axis_count * new_field.y_axis_count
             bed_count.times { |i|
@@ -37,7 +37,7 @@ class FieldsController < ApplicationController
     private
 
     def strong_params
-        params.require(:field).permit(:x_axis_count, :y_axis_count, :name, :user_id, :pic)
+        params.require(:field).permit(:x_axis_count, :y_axis_count, :name, :user_id, :pic_opt)
     end
 
 end
