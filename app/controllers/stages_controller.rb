@@ -1,4 +1,4 @@
-class StagesController < ApplicationController    
+class StagesController < ApplicationController
     def create
         bed = Bed.find(params[:bed_id])
         new_start_date = Date.parse(params[:start_date])
