@@ -1,5 +1,5 @@
 class Stage < ApplicationRecord
-  belongs_to :bed
+  belongs_to :bed, touch: true
   belongs_to :crop, optional: true
   enum status: {
     unused: 'unused', 
