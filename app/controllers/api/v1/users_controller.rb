@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
             user_serial = UserSerializer.new(user).to_serialized_json
             render json: {user: user_serial, jwt: @token}, status: :created
         else
-            render json: { error: 'Username invalid. Please try another username.' }, status: :not_acceptable
+            render json: { error: user.errors.full_messages[0] }, status: :not_acceptable
         end
 
     end
