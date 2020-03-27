@@ -1,5 +1,5 @@
 class Field < ApplicationRecord
-    belongs_to :user
+    belongs_to :user, touch: true
     has_many :beds
     has_many :stages, through: :beds
     has_many :todos
