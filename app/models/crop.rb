@@ -33,7 +33,6 @@ class Crop < ApplicationRecord
         search_url = "https://api.spoonacular.com/food/ingredients/autocomplete?query=#{search_term}&apiKey=#{Figaro.env.spoonacular_api_key}"
         response = JSON.parse(RestClient.get(search_url))
         
-        byebug
         if response[0]
             img_url = "https://spoonacular.com/cdn/ingredients_100x100/#{response[0]["image"]}"
         else
