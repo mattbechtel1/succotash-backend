@@ -9,6 +9,7 @@ class Stage < ApplicationRecord
     harvest: 'harvest', 
     barren: 'barren' 
   }
+  attribute :status, default: :unused
 
   def start_date_display
     self.start_date.strftime('%Y-%m-%d')
