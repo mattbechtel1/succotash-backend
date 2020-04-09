@@ -17,8 +17,7 @@ class BedSerializer
                 todos: {
                     except: [:updated_at, :created_at, :field_id, :bed_id, :user_id]
                 }
-            },
-            except: [:created_at]
+            }
         }
         @bed.as_json(format)
     end
