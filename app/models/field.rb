@@ -11,5 +11,4 @@ class Field < ApplicationRecord
             errors.add(:name, "cannot be 'new'.")
         end
     end
-
 end
