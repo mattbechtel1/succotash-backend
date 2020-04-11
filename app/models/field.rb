@@ -20,12 +20,10 @@ class Field < ApplicationRecord
     def populate_beds
         total = self.y_axis_count * self.x_axis_count
 
-        (1..total).each() {|num|
-            Bed.create(field: self, name: "Bed ##{num.to_s}")
-        }
+        total.times {|num| Bed.create(field: self, name: "Bed ##{num.to_s}") }
     end
 
     def set_slug
-        self.update_attribute(:slug, slugify(self.name))
+        self.update_attribute(:slug, self.name.parameterize)
     end
 end
