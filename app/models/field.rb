@@ -20,7 +20,7 @@ class Field < ApplicationRecord
     def populate_beds
         total = self.y_axis_count * self.x_axis_count
 
-        total.times {|num| Bed.create(field: self, name: "Bed ##{num.to_s}") }
+        total.times {|num| Bed.create(field: self, name: "Bed ##{(num+1).to_s}") }
     end
 
     def set_slug
