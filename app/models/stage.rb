@@ -1,5 +1,5 @@
 class Stage < ApplicationRecord
-  belongs_to :bed
+  belongs_to :bed, touch: true
   belongs_to :crop, optional: true
   enum status: {
     unused: 'unused', 
@@ -9,6 +9,7 @@ class Stage < ApplicationRecord
     harvest: 'harvest', 
     barren: 'barren' 
   }
+  attribute :status, default: :unused
 
   def start_date_display
     self.start_date.strftime('%Y-%m-%d')

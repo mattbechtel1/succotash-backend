@@ -57,8 +57,7 @@ class StagesController < ApplicationController
         end
 
         bed = Bed.find(params[:bed_id])
-        bed.field.update(updated_at: Time.now)
-        bed.update(updated_at: Time.now)
+
         render json: BedSerializer.new(bed).to_serialized_json
     end
 

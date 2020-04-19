@@ -13,7 +13,7 @@ class TodoSerializer
                     only: :name
                 }
             },
-            exclude: [:updated_at, :created_at]
+            except: [:updated_at, :created_at]
         }
 
         @todo.as_json(format)
