@@ -1,7 +1,7 @@
 class Todo < ApplicationRecord
-  belongs_to :user
-  belongs_to :field, optional: true
-  belongs_to :bed, optional: true
+  belongs_to :user, touch: true
+  belongs_to :field, optional: true, touch: true
+  belongs_to :bed, optional: true, touch: true
   validate :bed_requires_field
 
   def bed_requires_field
