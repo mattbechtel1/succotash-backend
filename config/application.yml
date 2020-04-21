@@ -16,6 +16,9 @@ secret_key: akjlsj54235tera8f9dpsuvjen46l3h5terugpdfijlke56&324reds9x
 # edamam_app_key: 3d6e37913dad0b8c00a4970bea9d8a7b
 spoonacular_api_key: 77c16ca98823448ea3fd48c2d9dead0c
 
+test:
+  allowed_origin: '*'
+
 development:
   allowed_origin: http://localhost:3000
 
