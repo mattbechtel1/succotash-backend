@@ -7,6 +7,7 @@ class Field < ApplicationRecord
     has_many :stages, through: :beds
     has_many :todos
     before_validation :set_slug
+    validates :slug, length: {minimum: 1}
     validates :slug, uniqueness: { scope: :user_id, message: "Field name already in use. Please select a different name or delete the existing field."}
     validate :name_not_new
     after_create :populate_beds

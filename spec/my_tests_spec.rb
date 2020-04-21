@@ -15,26 +15,32 @@ describe 'get all crops route', :type => :request do
 end
 
 describe 'Field is valid when', :type => :model do
-    user = User.new(username: 'Mike')
     valid_field = Field.new(user: user, name: "#{Faker::ProgrammingLanguage.unique.name} Field")
     field_without_owner = Field.new(name: 'pipsqueak')
-    field_wihtout_name = Field.new(user: user)
+    field_without_name = Field.new(user: user)
     new_field = Field.new(user: user, name: 'new')
 
-    it 'it has a valid user and username' do
+
+    it 'it has a valid user' do
         expect(valid_field).to be_valid
-        expect(field_wihtout_name).to be_invalid
-        expect(field_without_owner).to be_invalid
+        expect(field_without_owner).to_not be_valid
+    end
+
+    it 'it has a name' do
+        expect(valid_field).to be_valid
+        expect(field_without_name).to_not be_valid
     end
 
     it "it's name is not literally 'new'" do
-        expect(new_field).to be_invalid
+        expect(valid_field).to be_valid
+        expect(new_field).to_not be_valid
     end
 
     it "it's slug is not duplicative" do
         slug_field = Field.new(user: user, name: 'my-field')
         slug_field2 = Field.new(user: user, name: 'my field')
-        expect(slug_field2).to be_invalid
+        expect(slug_field).to be_valid
+        expect(slug_field2).to_not be_valid
     end
 
 end
