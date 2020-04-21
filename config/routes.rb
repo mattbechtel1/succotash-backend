@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :todos, only: [:create, :destroy, :update, :show]
   resources :stages, only: [:create]
   resources :beds, only: [:update]
-  resources :fields, only: [:create, :destroy, :update]
+  resources :fields, only: [:create, :destroy, :update, :index]
 
   namespace :api do
     namespace :v1 do

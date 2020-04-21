@@ -1,5 +1,11 @@
 class FieldsController < ApplicationController
 
+    def index
+        fields = Field.all
+
+        render json: FieldSerializer.new(fields).to_serialized_json
+    end
+
     def create
         new_field = Field.create(strong_params)
         

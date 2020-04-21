@@ -6,8 +6,7 @@ class Field < ApplicationRecord
     has_many :beds
     has_many :stages, through: :beds
     has_many :todos
-    before_validation :set_slug
-    validates :slug, length: {minimum: 1}
+    before_validation :assign_slug
     validates :slug, uniqueness: { scope: :user_id, message: "Field name already in use. Please select a different name or delete the existing field."}
     validate :name_not_new
     after_create :populate_beds
@@ -15,6 +14,8 @@ class Field < ApplicationRecord
     def name_not_new
         if slug == 'new'
             errors.add(:name, "cannot be 'new'.")
+        elsif slug.length < 1
+            errors.add(:name, 'must contain at least one alphanumeric character')
         end
     end
 
@@ -24,7 +25,9 @@ class Field < ApplicationRecord
         total.times {|num| Bed.create(field: self, name: "Bed ##{(num+1).to_s}") }
     end
 
-    def set_slug
-        self.update_attribute(:slug, self.name.parameterize)
+    private
+
+    def assign_slug
+        self.slug = slugify(self.name)
     end
 end
