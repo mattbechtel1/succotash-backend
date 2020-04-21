@@ -1,6 +1,3 @@
-require 'json'
-require 'rest-client'
-
 class CropsController < ApplicationController
 
     def index
