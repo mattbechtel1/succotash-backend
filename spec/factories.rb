@@ -10,4 +10,9 @@ FactoryBot.define do
         category {cat_options.sample}
         default_measure {measure_options.sample}
     end
+
+    factory :user, class: User do
+        username {Faker::Internet.unique.email}
+        password {"password"}
+    end
 end
