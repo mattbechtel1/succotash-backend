@@ -2,7 +2,7 @@ class CropsController < ApplicationController
 
     def index
         crops = Crop.all.order(name: :asc)
-        render json: crops, except: [:created_at, :updated_at]
+        render json: crops
     end
 
     def create

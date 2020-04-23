@@ -1,4 +1,5 @@
 class Crop < ApplicationRecord
+    attribute :favorite_count
     has_many :stages
     has_many :favorites
     enum category: {
@@ -25,6 +26,10 @@ class Crop < ApplicationRecord
 
     def set_pic
         self.update_attribute(:pic_url, find_pic(self.name))
+    end
+
+    def favorite_count
+        Favorite.where(crop_id: self.id).count
     end
 
     private
