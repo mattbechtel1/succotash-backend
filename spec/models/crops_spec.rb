@@ -100,4 +100,15 @@ describe Crop, type: :model do
         end
     end
 
+    describe '#fav_count' do
+        let(:new_crop) {Crop.new(valid_crop)}
+
+        it 'should display the number of times the crop has been favorited' do
+            user = build(:user)
+            expect true
+
+        end
+
+    end
+
 end
