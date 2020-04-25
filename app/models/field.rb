@@ -22,7 +22,11 @@ class Field < ApplicationRecord
     def populate_beds
         total = self.y_axis_count * self.x_axis_count
 
-        total.times {|num| Bed.create(field: self, name: "Bed ##{(num+1).to_s}") }
+        # The populate_beds method should only run on a saved / created field. This prevents the method being run twice when called on an unsaved field.
+        if (self.id)
+            self.beds.destroy_all
+            total.times {|num| Bed.create(field: self, name: "Bed ##{(num+1).to_s}") }
+        end
     end
 
     private

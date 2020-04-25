@@ -12,7 +12,7 @@ FactoryBot.define do
     end
 
     factory :user, class: User do
-        username {Faker::Internet.unique.email}
+        username {Faker::Internet.password(min_length: 5, max_length: 20)}
         password {"password"}
     end
 end
