@@ -139,7 +139,7 @@ GEM
       multi_json (~> 1.0)
       pusher-signature (~> 0.1.8)
     pusher-signature (0.1.8)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-test (1.1.0)
@@ -237,6 +237,8 @@ GEM
       unf_ext
     unf (0.1.4-java)
     unf_ext (0.0.7.7)
+    unf_ext (0.0.7.7-x64-mingw32)
+    unf_ext (0.0.7.7-x86-mingw32)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-driver (0.7.2-java)
