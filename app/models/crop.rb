@@ -35,6 +35,7 @@ class Crop < ApplicationRecord
     private
 
     def find_pic(search_term)
+        return nil unless Figaro.env.spoonacular_api_key
         search_url = "https://api.spoonacular.com/food/ingredients/autocomplete?query=#{search_term}&apiKey=#{Figaro.env.spoonacular_api_key}"
         response = JSON.parse(RestClient.get(search_url))
         
