@@ -9,7 +9,7 @@ describe Crop, type: :model do
         {name: 'fdkslahiasdf', category: 'legume'}
     end
 
-    describe '#pic_url' do
+    describe '#pic_url', :spoonacular do
         let(:new_crop) {Crop.new(valid_crop)}
         let(:created_crop) {Crop.create(valid_crop)}
         let(:new_crazy_crop) {Crop.new(crazy_crop)}
