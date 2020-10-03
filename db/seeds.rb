@@ -20,13 +20,12 @@ soybeans = Crop.create(name: 'Soybeans', default_measure: :bushel, category: :le
 
 first_field = Field.create(name: "My first field", x_axis_count: 3, y_axis_count: 3, user: userA)
 
-    Todo.create(note: 'Milk cows', due_date: Date.today + 1.days, complete: false, user: userA)
-
-    Todo.create(note: 'Buy seeds', due_date: (date + 3.days), complete: false, user: userA, bed: first_field.beds[3], field: first_field)
-    Todo.create(note: 'Scatter seeds', due_date: (date + 5.days), complete: false, user: userA, bed: first_field.beds[3], field: first_field)
-
+Todo.create(note: 'Milk cows', due_date: Date.today + 1.days, complete: false, user: userA)
+Todo.create(note: 'Buy seeds', due_date: (date + 3.days), complete: false, user: userA, bed: first_field.beds[3], field: first_field)
+Todo.create(note: 'Scatter seeds', due_date: (date + 5.days), complete: false, user: userA, bed: first_field.beds[3], field: first_field)
 
 second_field = Field.create(name: 'Ye olde field #3@gmail.com', user: userA, x_axis_count: 1, y_axis_count: 1)
 
-
 Favorite.create(user: userA, crop: rhubarb)
+
+puts "Successfully seeded the database."

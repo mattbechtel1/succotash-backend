@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
     end
 
     def secret_key
-        Figaro.env.secret_key
+        ENV["secret_key"]
     end
 
     def encode(payload)

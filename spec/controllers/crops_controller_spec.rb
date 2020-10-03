@@ -48,6 +48,14 @@ describe CropsController, type: :controller do
                 expect(JSON.parse(response.body).keys).to include("id", "name", "pic_url", "category", "default_measure", "favorite_count")
                 expect(JSON.parse(response.body).keys).to_not include("favorites")    
             end
+
+            it 'returns a valid response even without an API key' do
+                cached_key = ENV["spoonacular_api_key"]
+                ENV["spoonacular_api_key"] = nil
+                post :create, params: {crop: valid_params}
+                expect(response).to be_successful
+                ENV["spoonacular_api_key"] = cached_key
+            end
         end
 
         context 'with invalid parameters' do
