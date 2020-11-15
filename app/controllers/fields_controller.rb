@@ -10,6 +10,7 @@ class FieldsController < ApplicationController
         new_field = Field.create(strong_params)
         
         if new_field.valid?
+            new_field = Field.find(new_field.id)
             render json: FieldSerializer.new(new_field).to_serialized_json
         else 
             render json: { error: 'Name invalid. Please try another name for your field.' }, status: :not_acceptable
