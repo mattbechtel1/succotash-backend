@@ -232,7 +232,10 @@ CREATE TABLE public.users (
     password_digest character varying,
     pic character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    email character varying
 );
 
 
@@ -481,6 +484,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200209211646'),
 ('20200210034405'),
 ('20200211023947'),
-('20200212153914');
+('20200212153914'),
+('20201115191946'),
+('20201115192823');
 
 

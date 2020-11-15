@@ -2,7 +2,7 @@ class Api::V1::UsersController < ApplicationController
 
     def create
         user = User.create(strong_params)
-
+        byebug
         if user.valid?
             @token = encode(user_id: user.id)
             user_serial = UserSerializer.new(user).to_serialized_json
@@ -10,7 +10,6 @@ class Api::V1::UsersController < ApplicationController
         else
             render json: { error: user.errors.full_messages[0] }, status: :not_acceptable
         end
-
     end
 
     def profile
@@ -28,6 +27,6 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def strong_params
-        params.require(:user).permit(:username, :password, :pic)
+        params.require(:user).permit(:username, :password, :pic, :email)
     end
 end
