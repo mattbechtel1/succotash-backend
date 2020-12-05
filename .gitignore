@@ -17,7 +17,7 @@
 /storage/*
 !/storage/.keep
 .byebug_history
-dump.rdb
+*.rdb
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
