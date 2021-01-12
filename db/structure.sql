@@ -89,7 +89,7 @@ CREATE TABLE public.ar_internal_metadata (
 --
 
 CREATE TABLE public.beds (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     field_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE public.beds (
 --
 
 CREATE TABLE public.crops (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     pic_url character varying,
     created_at timestamp(6) without time zone NOT NULL,
@@ -117,7 +117,7 @@ CREATE TABLE public.crops (
 --
 
 CREATE TABLE public.favorites (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     user_id uuid NOT NULL,
     crop_id uuid NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE public.favorites (
 --
 
 CREATE TABLE public.fields (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     x_axis_count integer,
     y_axis_count integer,
     name character varying,
@@ -227,7 +227,7 @@ ALTER SEQUENCE public.todos_id_seq OWNED BY public.todos.id;
 --
 
 CREATE TABLE public.users (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     username character varying,
     password_digest character varying,
     pic character varying,
