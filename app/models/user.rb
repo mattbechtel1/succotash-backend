@@ -19,12 +19,7 @@ class User < ApplicationRecord
     def generate_password_token!
         self.reset_password_token = generate_token
         self.reset_password_sent_at = Time.now.utc
-        byebug
         save!
-    end
-
-    def send_dummy_email!
-        UserMailer.password_reset_email(self).deliver_now
     end
 
     def password_token_valid?
