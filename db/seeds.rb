@@ -1,9 +1,9 @@
 User.destroy_all
 Crop.destroy_all
 
-date = Date.new(2020, 1, 3)
+date = Date.new(2021, 1, 3)
 
-userA = User.create(username: 'farmerMatt', password: 'password')
+userA = User.create(username: 'farmerMatt', password: 'password', email: 'succotashapp@gmail.com')
 
 Crop.create(name: 'Sweet corn', default_measure: :bushel, category: :grain)
 Crop.create(name: 'Cotton', default_measure: :pounds, category: :flower)
