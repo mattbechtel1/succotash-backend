@@ -5,7 +5,7 @@ details on how you can startup the API and contribute to it.
 
 ## Setup
 ### Ruby Version
-Succotash is built with Ruby 2.6.1 and Rails 6.0.3. If you wish to run the
+Succotash is built with Ruby 3.2.1 and Rails 6.0.3. If you wish to run the
 application on your local machine, we recommend securing the correct version
 of Ruby using a utility such as [RVM](https://rvm.io/).
 
