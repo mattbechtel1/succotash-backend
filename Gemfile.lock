@@ -128,8 +128,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     netrc (0.11.0)
-    nio4r (2.5.8)
-    nio4r (2.5.8-java)
+    nio4r (2.5.9)
+    nio4r (2.5.9-java)
     nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
@@ -137,9 +137,9 @@ GEM
     psych (3.3.4)
     psych (3.3.4-java)
       jar-dependencies (>= 0.1.7)
-    puma (4.3.12)
+    puma (5.6.7)
       nio4r (~> 2.0)
-    puma (4.3.12-java)
+    puma (5.6.7-java)
       nio4r (~> 2.0)
     pusher (2.0.3)
       httpclient (~> 2.8)
@@ -272,7 +272,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   psych (< 4.0)
-  puma (~> 4.3)
+  puma (~> 5.6)
   pusher
   rack-cors
   rails (~> 6.0.3)
