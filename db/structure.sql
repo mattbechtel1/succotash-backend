@@ -1,6 +1,7 @@
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -8,13 +9,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
 
 --
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
@@ -474,25 +468,24 @@ ALTER TABLE ONLY public.todos
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20200128191814'),
-('20200128192126'),
-('20200128192945'),
-('20200128193626'),
-('20200129190806'),
-('20200130155308'),
-('20200131163147'),
-('20200206152019'),
-('20200206164225'),
-('20200208191118'),
-('20200209204050'),
-('20200209204152'),
-('20200209205526'),
-('20200209205916'),
-('20200209211646'),
-('20200210034405'),
-('20200211023947'),
-('20200212153914'),
+('20201115192823'),
 ('20201115191946'),
-('20201115192823');
-
+('20200212153914'),
+('20200211023947'),
+('20200210034405'),
+('20200209211646'),
+('20200209205916'),
+('20200209205526'),
+('20200209204152'),
+('20200209204050'),
+('20200208191118'),
+('20200206164225'),
+('20200206152019'),
+('20200131163147'),
+('20200130155308'),
+('20200129190806'),
+('20200128193626'),
+('20200128192945'),
+('20200128192126'),
+('20200128191814');
 
