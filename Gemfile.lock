@@ -197,7 +197,7 @@ GEM
     pusher-signature (0.1.8)
     racc (1.8.1)
     racc (1.8.1-java)
-    rack (3.2.3)
+    rack (3.2.6)
     rack-cors (3.0.0)
       logger
       rack (>= 3.0.14)
